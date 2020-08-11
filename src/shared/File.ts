@@ -1,5 +1,5 @@
 import path from "path"
-import fs from "fs/promises"
+import fs from "fs"
 
 export default class File {
 
@@ -27,7 +27,7 @@ export default class File {
     }
 
     async read(): Promise<string> {
-        return await fs.readFile(this.absolutePath, { encoding: "utf8" })
+        return await fs.promises.readFile(this.absolutePath, { encoding: "utf8" })
     }
 
 }
