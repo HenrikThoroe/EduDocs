@@ -4,11 +4,14 @@
   "description": "A documentation generator for educational purposes.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx webpack",
+    "start": "npm run build && node ./dist/bundle.js"
   },
   "author": "Henrik Thorøe",
   "license": "MIT",
   "devDependencies": {
+    "ts-loader": "^8.0.2",
     "typescript": "^3.9.7",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
