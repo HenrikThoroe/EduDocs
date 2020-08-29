@@ -4,7 +4,7 @@ import File from "../shared/File"
 
 export default async function fetchFiles(location: string): Promise<File[]> {
     if (!path.isAbsolute(location)) {
-        throw new Error(`Source path mus be asbolute. Given: ${location}`)
+        throw new Error(`Source path must be asbolute. Given: ${location}`)
     }
 
     const content = await fs.promises.readdir(location)
