@@ -75,4 +75,18 @@ export default class XMLNode {
         return this.children
     }
 
+    attribute(name: string, fallback?: string): string {
+        for (const attr of this.attributes) {
+            if (attr.key == name) {
+                return attr.value
+            }
+        }
+
+        if (fallback) {
+            return fallback
+        }
+
+        throw new Error(`Node does not contain attribute of name ${name}`)
+    }
+
 }
