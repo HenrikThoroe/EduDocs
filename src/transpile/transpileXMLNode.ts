@@ -1,6 +1,8 @@
 import XMLNode from "./XMLNode"
+import build from "./build"
 
 const template: string = require("../assets/template.html")
+const style: string = require("../assets/styles.css")
 
 type ValidTagName = "document" | "title" | "h1" | "h2" | "p" | "math"
 
@@ -10,7 +12,7 @@ export default function transpileXMLNode(node: XMLNode): string {
 
     switch (name) {
         case "document":
-            return template.replace("$root$", children())
+            return build(children())
 
         case "title":
             return `<h1>${node.getValue()}</h1>`
@@ -25,7 +27,13 @@ export default function transpileXMLNode(node: XMLNode): string {
             return `<p>${node.getValue()}</p>`
 
         case "math":
-            return `<!-- Support for mathematical equatations is coming soon -->`
+            const inline = node.attribute("inline", "false") === "true"
+
+            if (inline) {
+                return `<span class="inline-math">\\(${node.getValue()}\\)</span>`
+            } else {
+                return `<p class="math">$$${node.getValue()}$$</p>`
+            }
 
         default: 
             return `<!-- Unsupported tag name ["${name}"] -->`

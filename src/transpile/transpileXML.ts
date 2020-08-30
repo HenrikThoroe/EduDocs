@@ -3,7 +3,14 @@ import XMLNode from "./XMLNode"
 import transpileXMLNode from "./transpileXMLNode"
 
 export default async function transpileXML(xml: string) {
-    const parser = new xml2js.Parser({ explicitCharkey: true, trim: true, normalizeTags: true, explicitChildren: true, preserveChildrenOrder: true, explicitRoot: false })
+    const parser = new xml2js.Parser({ 
+        explicitCharkey: true, 
+        trim: true, 
+        normalizeTags: true, 
+        explicitChildren: true,
+        preserveChildrenOrder: true, 
+        explicitRoot: false
+    })
     const dom = await parser.parseStringPromise(xml)
     const root = new XMLNode(dom)
 
