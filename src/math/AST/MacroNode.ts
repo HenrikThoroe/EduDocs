@@ -15,6 +15,18 @@ export default class MacroNode implements ASTNode {
                 return "\\mathbb{Z}"
             case "!=":
                 return "\\ne"
+            case "<=":
+                return "\\leq"
+            case ">=":
+                return "\\geq"
+            case "*":
+                return "\\times"
+            case "/":
+                return "\\div"
+            case "+-":
+                return "\\pm"
+            case "**":
+                return "\\cdot"
             default: 
                 return this.symbol 
         }
