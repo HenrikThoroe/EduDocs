@@ -4,7 +4,7 @@ import Tokenizer from "../math/Tokenizer"
 import Parser from "../math/Parser"
 
 const transpileMath = (code: string) => {
-    const tokenizer = new Tokenizer(code)
+    const tokenizer = new Tokenizer(code.replace("&gt;", ">").replace("&lt;", "<"))
     const tokens = tokenizer.run()
     const parser = new Parser(tokens)
     const ast = parser.parse()
