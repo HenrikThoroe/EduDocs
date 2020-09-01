@@ -6,8 +6,8 @@ export default class BlockNode implements ASTNode {
 
     }
 
-    toString() {
-        return this.children.map(child => child.toString()).join(" ")
+    toString(seperator: string = " ") {
+        return this.children.map(child => child.toString()).join(seperator)
     }
 
 }
