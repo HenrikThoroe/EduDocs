@@ -1,13 +1,24 @@
 import marked from "marked"
 import build from "./build"
+import Tokenizer from "../math/Tokenizer"
+import Parser from "../math/Parser"
+
+const transpileMath = (code: string) => {
+    const tokenizer = new Tokenizer(code)
+    const tokens = tokenizer.run()
+    const parser = new Parser(tokens)
+    const ast = parser.parse()
+
+    return ast.toString()
+}
 
 const renderer = {
     codespan(code: string) {
-        return `<span class="mathcontainer-inline">\\(${code}\\)</span>`
+        return `<span class="mathcontainer-inline">\\(${transpileMath(code)}\\)</span>`
     },
 
     code(code: string, _infostring: string, _escaped: boolean) {
-        return `<span class="mathcontainer">$$${code}$$</span>`
+        return `<span class="mathcontainer">$$${transpileMath(code)}$$</span>`
     }
 }
 
