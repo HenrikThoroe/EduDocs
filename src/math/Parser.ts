@@ -14,8 +14,11 @@ export default class Parser {
 
     private index = 0
 
-    constructor(tokens: Token[]) {
+    private readonly flatBlocks: boolean = true
+
+    constructor(tokens: Token[], flatBlocks: boolean = true) {
         this.tokens = tokens
+        this.flatBlocks = flatBlocks
     }
 
     private hasNextToken() {
@@ -51,10 +54,6 @@ export default class Parser {
                     break
 
                 case "seperator": 
-                    if (seperators === 0) {
-                        out.push(new SymbolNode(" "))
-                        seperators += 1
-                    } 
                     break
 
                 case "symbol":
@@ -67,7 +66,7 @@ export default class Parser {
                     break
 
                 case "groupFlag":
-                    out.push(new SymbolNode(token.value))
+                    out.push(this.flatBlocks ? (this.readList().children) : this.readList())
                     break
             }
 
@@ -86,7 +85,7 @@ export default class Parser {
         const buffer: Token[] = []
 
         const createNode = () => {
-            return new Parser(buffer).parse()
+            return new Parser(buffer, false).parse()
         }
 
         do {
