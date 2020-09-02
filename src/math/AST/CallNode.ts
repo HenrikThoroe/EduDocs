@@ -25,6 +25,33 @@ export default class CallNode implements ASTNode {
                         ${this.args.children.map(joinRow).join(" \\\\ ")}
                     \\end{pmatrix}
                 `
+            case "sum":
+                if (this.args.children.length !== 3) {
+                    return "SUMMATION REQUIRES THREE ARGUMENTS"
+                }
+                
+                return `\\sum_{${this.args.children[0].toString()}=${this.args.children[1].toString()}}^{${this.args.children[2].toString()}}`
+
+            case "foreach":
+                return `\\forall {${this.args.toString()}}`
+
+            case "frac":
+                if (this.args.children.length !== 2) {
+                    return "FRACTION REQUIRES TWO ARGUMENTS"
+                }
+
+                return `\\frac{${this.args.children[0].toString()}}{${this.args.children[1].toString()}}`
+
+            case "sqrt":
+                return `\\sqrt{${this.args.toString()}}`
+
+            case "root":
+                if (this.args.children.length !== 2) {
+                    return "ROOT REQUIRES TWO ARGUMENTS"
+                }
+
+                return `\\sqrt[${this.args.children[0].toString()}]{${this.args.children[1].toString()}}`
+
             default:
                 return this.id
         }
