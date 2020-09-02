@@ -37,6 +37,9 @@ export default class MacroNode implements ASTNode {
             case "GAMMA":
                 return "\\gamma"
 
+            case "INFINITY":
+                return "\\infty"
+
             // Operators
             case "!=":
                 return "\\ne"
