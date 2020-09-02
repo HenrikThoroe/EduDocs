@@ -52,6 +52,13 @@ export default class CallNode implements ASTNode {
 
                 return `\\sqrt[${this.args.children[0].toString()}]{${this.args.children[1].toString()}}`
 
+            case "limit":
+                if (this.args.children.length !== 2) {
+                    return "LIMIT REQUIRES TWO ARGUMENTS"
+                }
+
+                return `\\lim_{${this.args.children[0].toString()}\\to${this.args.children[1].toString()}}`
+
             default:
                 return this.id
         }

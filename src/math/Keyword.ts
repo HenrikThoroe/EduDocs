@@ -5,7 +5,8 @@ type Keyword =
     "foreach" |
     "root" | 
     "sqrt" |
-    "frac"
+    "frac" |
+    "limit"
 
 export function isKeyword(value: string): value is Keyword {
     switch (value as Keyword) {
@@ -16,6 +17,7 @@ export function isKeyword(value: string): value is Keyword {
         case "root":
         case "sqrt":
         case "frac":
+        case "limit":
             return true
         default: 
             return false
