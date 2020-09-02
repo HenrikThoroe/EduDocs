@@ -17,7 +17,24 @@ const renderer = {
         return `<span class="mathcontainer-inline">\\(${transpileMath(code)}\\)</span>`
     },
 
-    code(code: string, _infostring: string, _escaped: boolean) {
+    code(code: string, infostring: string, _escaped: boolean) {
+        let flags = infostring.split("_").filter(flag => flag.length > 0)
+
+        if (flags.length === 0 && infostring === "") {
+            flags = ["eq", "centered"]
+        }
+
+        for (const flag of flags.reverse()) {
+            switch (flag) {
+                case "eq":
+                    code = `\\begin{equation*} ${code} \\end{equation*}`
+                    break
+                case "centered":
+                    code = `\\begin{gathered} ${code} \\end{gathered}`
+                    break
+            }
+        }
+
         return `<span class="mathcontainer">$$${transpileMath(code)}$$</span>`
     }
 }
