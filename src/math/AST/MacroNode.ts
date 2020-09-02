@@ -11,8 +11,33 @@ export default class MacroNode implements ASTNode {
 
     toString() {
         switch (this.symbol) {
+            // Macros
             case "ZAHLEN": 
                 return "\\mathbb{Z}"
+            case "NATURAL": 
+                return "\\mathbb{N}"
+            case "RATIONAL": 
+                return "\\mathbb{Q}"
+            case "BINARY": 
+                return "\\mathbb{B}"
+            case "COMPLEX": 
+                return "\\mathbb{C}"
+            case "REAL": 
+                return "\\mathbb{R}"
+
+            case "IN":
+                return "\\in"
+            case "NOTIN":
+                return "\\notin"
+
+            case "ALPHA":
+                return "\\alpha"
+            case "BETA":
+                return "\\beta"
+            case "GAMMA":
+                return "\\gamma"
+
+            // Operators
             case "!=":
                 return "\\ne"
             case "<=":
