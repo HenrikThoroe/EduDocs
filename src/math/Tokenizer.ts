@@ -28,7 +28,7 @@ export default class Tokenizer {
             } else if (this.isSeperator(char)) {
                 this.tokens.push(new Token("seperator", char))
                 this.index += 1
-            } else if (["(", ")", "{", "}"].includes(char)) {
+            } else if (["(", ")"].includes(char)) {
                 this.tokens.push(new Token("groupFlag", char))
                 this.index += 1
             } else {
@@ -40,7 +40,7 @@ export default class Tokenizer {
     }
 
     private isSeperator(char: string): boolean {
-        return ["\n", "\t", "\r", " ", "\\\\"].includes(char)
+        return ["\n", "\t", "\r", " "].includes(char)
     }
 
     private iterate(condition: (char: string) => boolean, callback: (char: string) => void) {
@@ -53,7 +53,7 @@ export default class Tokenizer {
     private serializeSymbol() {
         let value = ""
 
-        this.iterate(char => !this.isSeperator(char) && !["(", ")", "{", "}"].includes(char), char => {
+        this.iterate(char => !this.isSeperator(char) && !["(", ")"].includes(char), char => {
             value += char
         })
 

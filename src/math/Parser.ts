@@ -54,6 +54,9 @@ export default class Parser {
                     break
 
                 case "seperator": 
+                    if (token.value === "\n") {
+                        out.push(new SymbolNode("\\\\"))
+                    }
                     break
 
                 case "symbol":
@@ -66,7 +69,10 @@ export default class Parser {
                     break
 
                 case "groupFlag":
-                    out.push(this.flatBlocks ? (this.readList().children) : this.readList())
+                    const list = this.readList()
+                    const children = list.children
+                    const items: ASTNode[] = this.flatBlocks ? [new SymbolNode("("), ...children, new SymbolNode(")")] : [list as ASTNode]
+                    out.push(...items)
                     break
             }
 
@@ -103,7 +109,6 @@ export default class Parser {
                     openGroups -= 1
 
                     if (openGroups === 0) {
-                        this.index += 1
                         continue
                     }
                 } 
@@ -111,7 +116,7 @@ export default class Parser {
 
             buffer.push(token)
             this.index += 1
-        } while (openGroups > 0)
+        } while (openGroups > 0 && this.hasNextToken())
 
         return createNode()
     }
