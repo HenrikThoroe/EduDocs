@@ -2,7 +2,8 @@ type Macro =
     "ZAHLEN" | "REAL" | "COMPLEX" | "NATURAL" | "RATIONAL" | "BINARY" |
     "ALPHA" | "BETA" | "GAMMA" |
     "IN" | "NOTIN" |
-    "INFINITY"
+    "INFINITY" |
+    "AND" | "OR"
 
 export function isMacro(value: string): value is Macro {
     switch (value as Macro) {
@@ -18,6 +19,8 @@ export function isMacro(value: string): value is Macro {
         case "IN":
         case "NOTIN":
         case "INFINITY":
+        case "AND":
+        case "OR":
             return true
         default: 
             return false
