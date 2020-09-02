@@ -59,6 +59,13 @@ export default class CallNode implements ASTNode {
 
                 return `\\lim_{${this.args.children[0].toString()}\\to${this.args.children[1].toString()}}`
 
+            case "integral":
+                if (this.args.children.length !== 2) {
+                    return "INTEGRAL REQUIRES TWO ARGUMENTS"
+                }
+                
+                return `\\int_{${this.args.children[0].toString()}}^{${this.args.children[1].toString()}}`
+
             default:
                 return this.id
         }
