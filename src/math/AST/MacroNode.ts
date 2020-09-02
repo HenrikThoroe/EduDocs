@@ -55,6 +55,19 @@ export default class MacroNode implements ASTNode {
                 return "\\pm"
             case "**":
                 return "\\cdot"
+            case "->":
+                return "\\rightarrow" 
+            case "<-":
+                return "\\leftarrow" 
+            case "=>":
+                return "\\Rightarrow" 
+            case "<=":
+                return "\\Leftarrow" 
+            case "<=>":
+                return "\\Leftrightarrow"
+            case "<->":
+                return "\\leftrightarrow"
+
             default: 
                 return this.symbol 
         }
