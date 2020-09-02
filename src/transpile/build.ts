@@ -7,5 +7,5 @@ export default function build(body: string) {
         .replace("@ROOT", () => body)
         .replace("@CSS", () => `<style>${style}</style>`)
         // .replace("@JS", () => `<script>${mathjax}</script>`)
-        .replace("@JS", () => `<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>`)
+        .replace("@JS", () => `<script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg-full.js"></script>`)
 }
