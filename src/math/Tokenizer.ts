@@ -53,7 +53,7 @@ export default class Tokenizer {
     private serializeSymbol() {
         let value = ""
 
-        this.iterate(char => !this.isSeperator(char) && !["(", ")"].includes(char), char => {
+        this.iterate(char => !this.isSeperator(char) && !["(", ")", "_"].includes(char), char => {
             value += char
         })
 
@@ -74,7 +74,13 @@ export default class Tokenizer {
         })
 
         if (isOperator(value)) {
-            this.tokens.push(new Token("operator", value))
+            // Append next character as symbol if operator is escape operator ("_")
+            if (value === "_" && this.index < this.raw.length) {
+                this.tokens.push(new Token("symbol", this.raw.charAt(this.index)))
+                this.index += 1
+            } else {
+                this.tokens.push(new Token("operator", value))
+            }
         } else {
             this.tokens.push(new Token("symbol", value))
         }
