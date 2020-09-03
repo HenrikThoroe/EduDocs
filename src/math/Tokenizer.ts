@@ -12,7 +12,7 @@ export default class Tokenizer {
     private tokens: Token[] = []
 
     constructor(code: string) {
-        this.raw = code
+        this.raw = code.trim()
     }
 
     public run(): Token[] {
