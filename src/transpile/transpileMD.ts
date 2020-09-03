@@ -30,6 +30,9 @@ const renderer = {
                     code = `\\begin{equation*} ${code} \\end{equation*}`
                     break
                 case "centered":
+                    code = `\\begin{aligned} ${code} \\end{aligned}`
+                    break
+                case "gathered":
                     code = `\\begin{gathered} ${code} \\end{gathered}`
                     break
             }
