@@ -7,7 +7,9 @@ type Keyword =
     "sqrt" |
     "frac" |
     "limit" |
-    "integral"
+    "integral" |
+    "text" | 
+    "abs"
 
 export function isKeyword(value: string): value is Keyword {
     switch (value as Keyword) {
@@ -20,6 +22,8 @@ export function isKeyword(value: string): value is Keyword {
         case "frac":
         case "limit":
         case "integral":
+        case "text":
+        case "abs":
             return true
         default: 
             return false

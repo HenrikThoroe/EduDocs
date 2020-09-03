@@ -66,6 +66,12 @@ export default class CallNode implements ASTNode {
                 
                 return `\\int_{${this.args.children[0].toString()}}^{${this.args.children[1].toString()}}`
 
+            case "text":
+                return `\\text{${this.args.toString()}}`
+
+            case "abs":
+                return `\\left| ${this.args.toString()} \\right|`
+
             default:
                 return this.id
         }
