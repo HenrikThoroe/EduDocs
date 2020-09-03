@@ -4,6 +4,8 @@ import BlockNode from "./BlockNode";
 
 export default class CallNode implements ASTNode {
 
+    public type = "call"
+
     constructor(public id: Keyword, public args: BlockNode) {
 
     }

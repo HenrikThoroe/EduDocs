@@ -5,6 +5,8 @@ import Macro from "../Macro";
 
 export default class MacroNode implements ASTNode {
 
+    public type = "macro"
+
     constructor(public symbol: Macro | Operator) {
 
     }

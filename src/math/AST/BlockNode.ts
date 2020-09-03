@@ -2,6 +2,8 @@ import ASTNode from "./ASTNode";
 
 export default class BlockNode implements ASTNode {
 
+    public type = "block"
+
     constructor(public children: ASTNode[]) {
 
     }

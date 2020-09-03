@@ -54,8 +54,9 @@ export default class Parser {
                     break
 
                 case "seperator": 
-                    if (token.value === "\n") {
-                        out.push(new SymbolNode("\\\\"))
+                    if (token.value === "\n" && seperators === 0) {
+                        seperators += 1
+                        out.push(new SymbolNode("\\\\[8pt]"))
                     }
                     break
 
@@ -76,12 +77,23 @@ export default class Parser {
                     break
             }
 
-            if (seperators !== 0 && token.type !== "seperator") {
+            if (seperators !== 0 && token.value !== "\n") {
                 seperators = 0
             }
 
             this.index += 1
         }
+
+        const removeTrailingWhitespace = () => {
+            while (out.length > 0 && out[out.length - 1].type === "symbol" && out[out.length - 1].toString().startsWith("\\\\")) {
+                out.pop()
+            }
+        }
+
+        removeTrailingWhitespace()
+        out.reverse()
+        removeTrailingWhitespace()
+        out.reverse()
 
         return new BlockNode(out)
     }
