@@ -72,6 +72,16 @@ export default class CallNode implements ASTNode {
             case "abs":
                 return `\\left| ${this.args.toString()} \\right|`
 
+            case "align":
+                return `\\begin{aligned} ${this.args.toString()} \\end{aligned}`
+
+            case "sub":
+                if (this.args.children.length !== 2) {
+                    return "SUB REQUIRES TWO ARGUMENTS"
+                }
+
+                return `${this.args.children[0].toString()}_{${this.args.children[1].toString()}}`
+
             default:
                 return this.id
         }

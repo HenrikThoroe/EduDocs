@@ -9,7 +9,9 @@ type Keyword =
     "limit" |
     "integral" |
     "text" | 
-    "abs"
+    "abs" |
+    "align" |
+    "sub"
 
 export function isKeyword(value: string): value is Keyword {
     switch (value as Keyword) {
@@ -24,6 +26,8 @@ export function isKeyword(value: string): value is Keyword {
         case "integral":
         case "text":
         case "abs":
+        case "align":
+        case "sub":
             return true
         default: 
             return false
