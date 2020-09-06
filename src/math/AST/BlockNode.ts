@@ -1,0 +1,15 @@
+import ASTNode from "./ASTNode";
+
+export default class BlockNode implements ASTNode {
+
+    public type = "block"
+
+    constructor(public children: ASTNode[]) {
+
+    }
+
+    toString(seperator: string = " ") {
+        return this.children.map(child => child.toString()).join(seperator)
+    }
+
+}
