@@ -88,7 +88,7 @@ export default class CallNode implements ASTNode {
                 return `\\begin{flalign*} ${this.args.toString()} \\end{flalign*}`
 
             case "group":
-                return `\\\\[15pt] ${this.args.toString()} \\\\[15pt]`
+                return `\\\\[10pt] ${this.args.toString()} \\\\[10pt]`
 
             default:
                 return this.id
