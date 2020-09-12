@@ -3,7 +3,8 @@ type Macro =
     "ALPHA" | "BETA" | "GAMMA" |
     "IN" | "NOTIN" |
     "INFINITY" |
-    "AND" | "OR"
+    "AND" | "OR" |
+    "VSPACE"
 
 export function isMacro(value: string): value is Macro {
     switch (value as Macro) {
@@ -21,6 +22,7 @@ export function isMacro(value: string): value is Macro {
         case "INFINITY":
         case "AND":
         case "OR":
+        case "VSPACE":
             return true
         default: 
             return false

@@ -74,6 +74,10 @@ export default class MacroNode implements ASTNode {
             case "OR":
                 return "\\cup"
 
+            // Layout
+            case "VSPACE":
+                return "\\\\[10pt]"
+
             default: 
                 return this.symbol 
         }
