@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "fullbuild": "npm run build && npx nexe -i ./dist/edudocs.js -o ./dist/binaries/win/edudocs.exe --target windows-x64-14.5.0 && npx nexe -i ./dist/edudocs.js -o ./dist/binaries/mac/edudocs --target mac-x64-14.5.0 && npx nexe -i ./dist/edudocs.js -o ./dist/binaries/linux/edudocs --target linux-x64-12.16.2",
     "build": "npx webpack",
     "start": "npm run build && node ./dist/edudocs.js"
   },
