@@ -5,6 +5,11 @@ import transpileMD from "./transpile/transpileMD"
 import File from "./shared/File"
 import sysPath from "path"
 import { glob } from "glob"
+import exists from "./shared/exists"
+import mkdir from "./shared/mkdir"
+import sleep from "./shared/sleep"
+import rmdir from "./shared/rmdir"
+import unlink from "./shared/unlink"
 
 export default class App {
 
@@ -84,16 +89,16 @@ export default class App {
 
     private async handleDirectoryAdd(dir: string) {
         const outDir = this.outPath(dir)
-        if (!await App.exists(outDir)) {
-            await App.mkdir(outDir)
+        if (!await exists(outDir)) {
+            await mkdir(outDir)
         }
     }
 
     private async handleDirectoryUnlink(dir: string) {
         const outDir = this.outPath(dir)
-        await App.sleep(2000)
-        if (await App.exists(outDir)) {
-            await App.rmdir(outDir)
+        await sleep(2000)
+        if (await exists(outDir)) {
+            await rmdir(outDir)
         }
     }
     
@@ -111,8 +116,8 @@ export default class App {
         if (this.automaticallyCreateDirectories) {
             const dir = sysPath.dirname(out)
 
-            if (!await App.exists(dir)) {
-                await App.mkdir(dir)
+            if (!await exists(dir)) {
+                await mkdir(dir)
             }
         }
 
@@ -121,7 +126,7 @@ export default class App {
 
     private async handleFileUnlink(path: string) {
         const out = this.outPath(path)
-        await App.unlink(out)
+        await unlink(out)
     }
 
     private outPath(sourecPath: string): string {
@@ -174,26 +179,6 @@ export default class App {
         }
 
         return sysPath.dirname(path)
-    }
-
-    private static async exists(path: string) {
-        return new Promise<boolean>((res, rej) => fs.access(path, fs.constants.F_OK, err => err ? res(false) : res(true)))
-    }
-
-    private static async unlink(path: string) {
-        return new Promise<void>((res, rej) => fs.unlink(path, err => err ? rej(err) : res()))
-    }
-
-    private static async rmdir(path: string) {
-        return new Promise<void>((res, rej) => fs.rmdir(path, err => err ? rej(err) : res()))
-    }
-
-    private static async mkdir(path: string, recursive: boolean = true) {
-        return new Promise<void>((res, rej) => fs.mkdir(path, { recursive: recursive }, err => err ? rej(err) : res()))
-    }
-
-    private static async sleep(ms: number) {
-        return new Promise<void>((res, rej) => setTimeout(() => res(), ms))
     }
 
 }
