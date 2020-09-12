@@ -11,7 +11,9 @@ type Keyword =
     "text" | 
     "abs" |
     "align" |
-    "sub"
+    "sub" |
+    "left" |
+    "group" 
 
 export function isKeyword(value: string): value is Keyword {
     switch (value as Keyword) {
@@ -28,6 +30,8 @@ export function isKeyword(value: string): value is Keyword {
         case "abs":
         case "align":
         case "sub":
+        case "left":
+        case "group":
             return true
         default: 
             return false
