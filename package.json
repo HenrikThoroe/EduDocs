@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx webpack",
-    "start": "npm run build && node ./dist/bundle.js"
+    "start": "npm run build && node ./dist/edudocs.js"
   },
   "author": "Henrik Thorøe",
   "license": "MIT",
