@@ -5,6 +5,7 @@
       "module": "esnext",
       "target": "es5",
       "allowJs": true,
-      "allowSyntheticDefaultImports": true
+      "allowSyntheticDefaultImports": true,
+      "moduleResolution": "node"
     }
 }

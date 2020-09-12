@@ -17,7 +17,7 @@ export default class File {
         }
 
         this.url = url
-        this.type = path.extname(url)
+        this.type = path.extname(url).slice(1)
         this.name = path.basename(url)
         this.path = path.dirname(url)
     }

@@ -1,23 +1,45 @@
-import path from "path"
-import File from "./shared/File"
-import puppeteer from "puppeteer"
-import fs from "fs"
-import transpileMD from "./transpile/transpileMD"
+import yargs from "yargs"
+import App from "./App"
 
-const p = "G:\\Projects/EduDocs/env/src/test.md"
-const f = new File(p)
+const args = yargs
+    .scriptName("edudocs")
+    .usage("$0 [args]")
+    .version()
+    .option("watch", {
+        alias: "w",
+        type: "boolean",
+        default: true,
+        description: "A flag which indicates if EduDocs should watch for file changes."
+    })
+    .option("src", {
+        alias: "s",
+        type: "string",
+        description: "The path to the source file or directory."
+    })
+    .option("out", {
+        alias: "o",
+        type: "string",
+        description: "The path to the output directory."
+    })
+    .option("chromium", {
+        alias: "c",
+        type: "string",
+        description: "The path to your local chromium installation (e.g. Google Chrome). It is required to create PDF files."
+    })
+    .option("recursive", {
+        alias: "r",
+        type: "boolean",
+        default: true,
+        description: "A flag which indicates if EduDocs should search the input directory recursively."
+    })
+    .demandOption("chromium")
+    .demandOption("out")
+    .demandOption("src")
+    .argv
 
 async function main() {
-    const cnt = await f.read()
-    const html = transpileMD(cnt) 
-    const browser = await puppeteer.launch({ executablePath: "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe" })
-    const page = await browser.newPage()
-    await page.setViewport({ width: 1080,  height: 1920  })
-    await page.setContent(html, { waitUntil: "networkidle0" })
-    await page.emulateMediaType("screen")
-    await page.pdf({path: 'env/hn.pdf', format: "A4", printBackground: true })
-    fs.writeFileSync("G:\\Projects\\EduDocs\\env\\doc.html", html)
-    await browser.close()
+    const app = new App(args.src, args.out, args.chromium, args.recursive, args.watch)
+    app.start()
 }
 
 main()
