@@ -21,14 +21,11 @@ const renderer = {
         let flags = infostring.split("_").filter(flag => flag.length > 0)
 
         if (flags.length === 0 && infostring === "") {
-            flags = ["eq", "gathered"]
+            flags = ["gathered"]
         }
 
         for (const flag of flags.reverse()) {
             switch (flag) {
-                case "eq":
-                    code = `\\begin{equation*} ${code} \\end{equation*}`
-                    break
                 case "align":
                     code = `\\begin{aligned} ${code} \\end{aligned}`
                     break
