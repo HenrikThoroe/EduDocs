@@ -43,6 +43,11 @@ p {
     margin: 1rem;
 }
 
+.new-page {
+    page-break-before: always !important;
+    display: block;
+}
+
 box {
     display: flex;
     flex-direction: column;

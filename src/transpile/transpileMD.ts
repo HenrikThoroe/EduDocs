@@ -45,5 +45,5 @@ const renderer = {
 marked.use({ renderer: renderer as marked.Renderer })
 
 export default function transpileMD(md: string) {
-    return build(marked(md))
+    return build(marked(md.replace("@PB", `<span class="new-page"></span>`)))
 }
