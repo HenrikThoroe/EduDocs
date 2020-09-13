@@ -1,5 +1,6 @@
 import yargs from "yargs"
 import App from "./App"
+import sysPath from "path"
 
 const args = yargs
     .scriptName("edudocs")
@@ -38,7 +39,8 @@ const args = yargs
     .argv
 
 async function main() {
-    const app = new App(args.src, args.out, args.chromium, args.recursive, args.watch)
+    const makeAbsolute = (path: string) => sysPath.resolve(path)
+    const app = new App(makeAbsolute(args.src), makeAbsolute(args.out), makeAbsolute(args.chromium), args.recursive, args.watch)
     app.start()
 }
 
