@@ -22,6 +22,10 @@ module.exports = {
             {
                 test: /\.min\.js$/,
                 use: [ 'raw-loader' ]
+            },
+            {
+                test: /\.txt$/,
+                use: [ 'raw-loader' ]
             }
         ],
     },
