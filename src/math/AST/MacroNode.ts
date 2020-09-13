@@ -76,7 +76,7 @@ export default class MacroNode implements ASTNode {
 
             // Layout
             case "VSPACE":
-                return "\\\\[10pt]"
+                return "\\\\"
 
             default: 
                 return this.symbol 
