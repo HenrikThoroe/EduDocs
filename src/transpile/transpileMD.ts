@@ -32,6 +32,9 @@ const renderer = {
                 case "align":
                     code = `\\begin{aligned} ${code} \\end{aligned}`
                     break
+                case "left":
+                    code = `left(${code})`
+                    break
                 case "gathered":
                     code = `\\begin{gathered} ${code} \\end{gathered}`
                     break

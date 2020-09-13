@@ -85,7 +85,7 @@ export default class CallNode implements ASTNode {
                 return `${this.args.children[0].toString()}_{${this.args.children[1].toString()}}`
 
             case "left":
-                return `\\begin{flalign*} ${this.args.toString()} \\end{flalign*}`
+                return `\\begin{aligned} ${this.args.lines().map(line => `& ${line.toString()}`).join(" ")} \\end{aligned}`
 
             case "group":
                 return `\\\\[10pt] ${this.args.toString()} \\\\[10pt]`
