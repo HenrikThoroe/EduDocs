@@ -90,6 +90,9 @@ export default class CallNode implements ASTNode {
             case "group":
                 return `\\\\ ${this.args.toString()} \\\\`
 
+            case "dist":
+                return `\\overline{${this.args.toString()}}`
+
             default:
                 return this.id
         }
