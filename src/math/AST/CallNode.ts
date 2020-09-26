@@ -93,6 +93,9 @@ export default class CallNode implements ASTNode {
             case "dist":
                 return `\\overline{${this.args.toString()}}`
 
+            case "brace":
+                return `\\left[${this.args.toString()}\\right]`
+
             default:
                 return this.id
         }

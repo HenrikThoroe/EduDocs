@@ -14,7 +14,8 @@ type Keyword =
     "sub" |
     "left" |
     "group" |
-    "dist"
+    "dist" |
+    "brace"
 
 export function isKeyword(value: string): value is Keyword {
     switch (value as Keyword) {
@@ -34,6 +35,7 @@ export function isKeyword(value: string): value is Keyword {
         case "left":
         case "group":
         case "dist":
+        case "brace":
             return true
         default: 
             return false
