@@ -96,6 +96,25 @@ export default class CallNode implements ASTNode {
             case "brace":
                 return `\\left[${this.args.toString()}\\right]`
 
+            case "func":
+                if (this.args.children.length < 2) {
+                    return "FUNC REQUIRES AT LEAST TWO ARGUMENTS"
+                }
+
+                let primes = "";
+
+                if (this.args.children.length > 2) {
+                    const count = parseInt(this.args.children[2].toString())
+
+                    if (count !== NaN && count !== undefined) {
+                        for (let i = 0; i < count; ++i) {
+                            primes += "'"
+                        }
+                    }
+                }
+
+                return `${this.args.children[0].toString()}${primes}(${this.args.children[1].toString()})`
+
             default:
                 return this.id
         }
