@@ -44,6 +44,9 @@ export default class MacroNode implements ASTNode {
             case "INFINITY":
                 return "\\infty"
 
+            case "INTEGRAL":
+                return "\\int"
+
             // Operators
             case "!=":
                 return "\\ne"
