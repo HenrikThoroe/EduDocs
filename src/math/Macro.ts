@@ -1,6 +1,6 @@
 type Macro = 
     "ZAHLEN" | "REAL" | "COMPLEX" | "NATURAL" | "RATIONAL" | "BINARY" |
-    "ALPHA" | "BETA" | "GAMMA" |
+    "ALPHA" | "BETA" | "GAMMA" | "DELTA" |
     "IN" | "NOTIN" |
     "INFINITY" |
     "AND" | "OR" |
@@ -23,6 +23,7 @@ export function isMacro(value: string): value is Macro {
         case "AND":
         case "OR":
         case "VSPACE":
+        case "DELTA":
             return true
         default: 
             return false

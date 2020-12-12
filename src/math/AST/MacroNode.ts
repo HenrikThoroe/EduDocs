@@ -38,6 +38,8 @@ export default class MacroNode implements ASTNode {
                 return "\\beta"
             case "GAMMA":
                 return "\\gamma"
+            case "DELTA":
+                return "\\Delta"
 
             case "INFINITY":
                 return "\\infty"
