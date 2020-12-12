@@ -4,7 +4,7 @@ type Macro =
     "IN" | "NOTIN" |
     "INFINITY" |
     "AND" | "OR" |
-    "VSPACE" |
+    "VSPACE" | "GAP" |
     "INTEGRAL"
 
 export function isMacro(value: string): value is Macro {
@@ -26,6 +26,7 @@ export function isMacro(value: string): value is Macro {
         case "VSPACE":
         case "DELTA":
         case "INTEGRAL":
+        case "GAP":
             return true
         default: 
             return false
