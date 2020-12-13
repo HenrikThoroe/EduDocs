@@ -1,4 +1,4 @@
-type Operator = "=" | "!=" | "+" | "-" | "/" | "*" | "^" | "!" | "<=" | ">=" | "+-" | "**" | "-->" | "<--" | "==>" | "<==" | "<=>" | "<->" | "|" | "_"
+type Operator = "=" | "!=" | "+" | "-" | "/" | "*" | "^" | "!" | "<=" | ">=" | "+-" | "**" | "-->" | "<--" | "==>" | "<==" | "<=>" | "<->" | "|" | "_" | "|==>"
 
 export function isOperator(value: string): value is Operator {
     switch (value as Operator) {
@@ -21,6 +21,7 @@ export function isOperator(value: string): value is Operator {
         case "<=>":
         case "<->":
         case "_":
+        case "|==>":
             return true
         default:
             return false

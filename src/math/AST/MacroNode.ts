@@ -74,6 +74,8 @@ export default class MacroNode implements ASTNode {
                 return "\\Leftrightarrow"
             case "<->":
                 return "\\leftrightarrow"
+            case "|==>":
+                return "\\Downarrow"
             case "AND":
                 return "\\cap"
             case "OR":
