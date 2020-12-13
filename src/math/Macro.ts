@@ -2,7 +2,7 @@ type Macro =
     "ZAHLEN" | "REAL" | "COMPLEX" | "NATURAL" | "RATIONAL" | "BINARY" |
     "ALPHA" | "BETA" | "GAMMA" | "DELTA" |
     "IN" | "NOTIN" |
-    "INFINITY" |
+    "INFINITY" | "PI" |
     "AND" | "OR" |
     "VSPACE" | "GAP" |
     "INTEGRAL"
@@ -27,6 +27,7 @@ export function isMacro(value: string): value is Macro {
         case "DELTA":
         case "INTEGRAL":
         case "GAP":
+        case "PI":
             return true
         default: 
             return false
